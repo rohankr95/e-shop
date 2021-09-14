@@ -16,7 +16,7 @@
           <form @submit="signup" class="pt-4 pl-4 pr-4">
             <div class="form-group">
               <label>Email</label>
-              <input type="email" class="form-control" v-model="email" required>
+              <input type="text" class="form-control" v-model="userName" required>
             </div>
             <div class="form-row">
               <div class="col">
@@ -37,16 +37,16 @@
               <input type="password" class="form-control" v-model="password" required>
             </div>
             <div class="form-group">
-              <label>Confirm Password</label>
+              <label> Confirm Password</label>
               <input type="password" class="form-control" v-model="passwordConfirm" required>
             </div>
             <div class="form-group">
               <label>Mobile No:</label>
-              <input type="number" class="form-control" v-model="number" required>
+              <input type="number" class="form-control" v-model="userMobile" required>
             </div>
             <div class="form-group">
               <label>Address</label>
-              <input type="address" class="form-control" v-model="address" required>
+              <input type="address" class="form-control" v-model="userLocation" required>
             </div>
             <button type="submit" class="btn btn-primary mt-2 py-0">Create Account</button>
           </form>
@@ -65,13 +65,12 @@ export default {
   props : ["baseURL"],
   data() {
     return {
-      email: null,
+      userName: null,
       firstName: null,
       lastName: null,
       password: null,
-      passwordConfirm: null,
-      number:null,
-      address:null
+      userMobile:null,
+      userLocation:null
       
     }
   },
@@ -80,17 +79,18 @@ export default {
       e.preventDefault();
       if (this.password === this.passwordConfirm) {
         const user = {
-          email: this.email,
+          userName: this.userName,
           firstName: this.firstName,
           lastName: this.lastName,
           password: this.password,
-          number: this.number,
-          password: this.password
+          userMobile: this.userMobile,
+          password: this.password,
+          userLocation:this.userLocation
         }
 
         await axios({
           method : 'post',
-          url : this.baseURL + "user/signup",
+          url : this.baseURL + "user/register",
           data : JSON.stringify(user),
           headers: {
             'Content-Type': 'application/json'

@@ -80,7 +80,7 @@ const routes = [
     component: Category
   },
   {
-    path: '/admin/category/add',
+    path: '/merchant/category/add',
     name: 'AddCategory',
     component: AddCategory
   },
@@ -114,13 +114,13 @@ const routes = [
   },
   //Merchants Signin and Signup
   {
-    path: '/MerchantSignup',
+    path: '/Merchant/register',
     name: 'MerchantSignup',
     component: MerchantSignup
   },
   
   {
-    path: '/MerchantSignin',
+    path: '/Merchant/Signin',
     name: 'MerchantSignin',
     component: MerchantSignin
   },

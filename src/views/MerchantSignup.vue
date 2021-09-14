@@ -14,30 +14,20 @@
           <h2 class="pt-4 pl-4">Merchant Create Account</h2>
           <form @submit="MerchantSignup" class="pt-4 pl-4 pr-4">
             <div class="form-group">
-              <label>Email</label>
-              <input type="email" class="form-control" v-model="email" required>
-            </div>
-            <div class="form-row">
-              <div class="col">
-                <div class="form-group">
-                  <label>name</label>
-                  <input type="name" class="form-control" v-model="name" required>
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                  <label>username</label>
-                  <input type="name" class="form-control" v-model="username" required>
-                </div>
-              </div>
+              <label>FirstName</label>
+              <input type="firstname" class="form-control" v-model="firstname" required>
             </div>
             <div class="form-group">
-              <label>Password</label>
-              <input type="password" class="form-control" v-model="password" required>
+              <label>LastName</label>
+              <input type="lastname" class="form-control" v-model="lastname" required>
             </div>
             <div class="form-group">
-              <label>Confirm Password</label>
-              <input type="password" class="form-control" v-model="passwordConfirm" required>
+              <label>Mobile Number</label>
+              <input type="number" class="form-control" v-model="number" required>
+            </div>
+            <div class="form-group">
+              <label>Address</label>
+              <input type="text" class="form-control" v-model="Adress" required>
             </div>
             <button type="submit" class="btn btn-primary mt-2 py-0">Create Account</button>
           </form>

@@ -15,12 +15,12 @@
           <h2 class="pt-4 pl-4 text-dark">Sign-In</h2>
           <form @submit="signin" class="pt-4 pl-4 pr-4">
             <div class="form-group">
-              <label>Email</label>
-              <input type="email" class="form-control" v-model="email" required>
+              <label>Username</label>
+              <input type="text" class="form-control" v-model="userName" required>
             </div>
             <div class="form-group">
               <label>Password</label>
-              <input type="password" class="form-control" v-model="password" required>
+              <input type="password" class="form-control" v-model="userPassword" required>
             </div>
             <small class="form-text text-muted">By continuing, you agree to Cafeshots's Conditions of Use and Privacy Notice.</small>
             <button type="submit" class="btn btn-primary mt-2 py-0">
@@ -45,8 +45,8 @@ export default {
   props : [ "baseURL"],
   data() {
     return {
-      email: null,
-      password: null,
+      userName: null,
+      userPassword: null,
       loading: null
     }
   },
@@ -56,22 +56,24 @@ export default {
       this.loading = true;
 
       const user = {
-        email: this.email,
-        password: this.password
+        userName: this.userName,
+        userPassword: this.userPassword
       }
 
       await axios({
         method: 'post',
-        url: this.baseURL + "user/signIn",
+        url: this.baseURL + "auth/user/login",
         data : JSON.stringify(user),
         headers: {
           'Content-Type': 'application/json'
         }
       })
       .then(res => {
-        localStorage.setItem('token', res.data.token);
-        this.$emit("refreshNav");
-        this.$router.back();
+        if(res.data===true){
+          this.$emit("refreshNav");
+          this.$router.back();
+        }
+        
       })
       .catch(err => {
         swal({

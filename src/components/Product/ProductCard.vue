@@ -1,10 +1,11 @@
 <template>
 <!--  For HomePage-->
   <div class="card product-card">
-    <img :src="product.imageURL" class="card-img-top" alt="image" @click="showDetails">
+    <img :src="product.productImage" class="card-img-top" alt="image" @click="showDetails">
     <div class="card-body">
       <p class="name" @click="showDetails">{{product.name}}</p>
       <p class="card-text">{{product.description}}</p>
+        <h5 class="card-title">{{product.productCategory}}</h5>
     </div>
   </div>
 </template>
@@ -21,14 +22,17 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .card{
-  width : 20rem;
-  height : 24rem;
+  width : 50px;
+  height : 100px;
 }
+
+
 
 .product-card img:hover{
   cursor:pointer;
+  
 }
 
 .product-card .name:hover{
@@ -39,4 +43,5 @@ p.name{
   font-family: 'Courgette', cursive;
   font-size : 30px;
 }
+
 </style>

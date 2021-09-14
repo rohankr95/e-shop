@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="row">
-      <h1 style="text-align: center; color:red; margin:auto;" v-if="!this.category_size">No Categories Found</h1>
+      <!-- <h1 style="text-align: center; color:red; margin:auto;" v-if="!this.category_size">No Categories Found</h1> -->
       <div v-for="index in this.category_size" :key="index" class="col-md-6 col-xl-4 col-12 pt-3  justify-content-around d-flex">
         <CategoryBox :category="categories[index-1]">
         </CategoryBox>
@@ -31,7 +31,7 @@
       </div>
     </div>
     <div class="row">
-      <h1 style="text-align: center; color:red; margin:auto;" v-if="!this.product_size">No Product Found</h1>
+      <!-- <h1 style="text-align: center; color:red; margin:auto;" v-if="!this.product_size">No Product Found</h1> -->
       <div v-for="index in this.product_size" :key="index" class="col-md-6 col-xl-4 col-12 pt-3  justify-content-around d-flex">
         <ProductBox :product="products[index-1]">
         </ProductBox>
@@ -69,13 +69,13 @@ export default {
     }
   },
   mounted(){
-    // this.startSlide();
+    this.startSlide();
     // this.category_size = Object.keys(this.categories).length
     // if(this.category_size>3){
     //  this.category_size/=2
     //  this.category_size = Math.floor(this.category_size)
     // }
-    // this.product_size = Object.keys(this.products).length
+    // this.product_size = Object.keys(this.product).length
     // if(this.product_size>8){
     //   this.product_size/=2
     //   this.product_size = Math.floor(this.product_size)

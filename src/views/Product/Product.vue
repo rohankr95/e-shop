@@ -14,7 +14,7 @@
           </ProductBox>
         </div>
     </div>
-    <h1 style="text-align: center; color:red; margin:auto;" v-if="!this.product_size">No products found</h1>
+    <!-- <h1 style="text-align: center; color:red; margin:auto;" v-if="!this.product_size">No products found</h1> -->
   </div>
 </template>
 
@@ -24,6 +24,9 @@ export default {
   name: 'Product',
   components : {ProductBox},
   props : [ "baseURL" , "products" ],
+  // created() {
+  
+  // },
   mounted(){
     if (this.$route.name=='MerchantProduct' && !localStorage.getItem('token')) {
       this.$router.push({name : 'Signin'});
