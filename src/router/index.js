@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 
- import Admin from '../views/Admin/Admin.vue'
+ import Merchant from '../views/Merchant/Merchant.vue'
 import Product from '../views/Product/Product.vue'
 import AddProduct from '../views/Product/AddProduct.vue'
 import EditProduct from '../views/Product/EditProduct.vue'
@@ -38,9 +38,9 @@ const routes = [
   },
   //Admin routes
   {
-    path: '/admin',
-    name: 'Admin',
-    component: Admin
+    path: '/merchant',
+    name: 'Merchant',
+    component: Merchant
   },
   
   {
@@ -49,17 +49,17 @@ const routes = [
     component: Product
   },
   {
-    path: '/admin/product',
-    name: 'AdminProduct',
+    path: '/merchant/product',
+    name: 'MerchantProduct',
     component: Product
   },
   {
-    path: '/admin/product/add',
+    path: '/merchant/product/add',
     name: 'AddProduct',
     component: AddProduct
   },
   {
-    path: '/admin/product/:id',
+    path: '/merchant/product/:id',
     name: 'EditProduct',
     component: EditProduct,
   },
@@ -75,8 +75,8 @@ const routes = [
     component: Category
   },
   {
-    path: '/admin/category',
-    name: 'AdminCategory',
+    path: '/merchant/category',
+    name: 'MerchantCategory',
     component: Category
   },
   {
@@ -85,7 +85,7 @@ const routes = [
     component: AddCategory
   },
   {
-    path: '/admin/category/:id',
+    path: '/merchant/category/:id',
     name: 'EditCategory',
     component: EditCategory
   },

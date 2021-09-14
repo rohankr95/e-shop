@@ -1,6 +1,6 @@
 <template>
-  <div class="adminPanel container">
-      <router-link :to="{name : 'AdminProduct'}">
+  <div class="merchantPanel container">
+      <router-link :to="{name : 'MerchantProduct'}">
         <button type="button" class="btn btn-primary btn-lg">Merchant Products</button>
       </router-link>
   </div>
@@ -17,12 +17,12 @@ export default {
 </script>
 
 <style>
-.adminPanel{
+.merchantPanel{
   display : flex;
   flex-direction: column;
   align-items: center;
 }
-.adminPanel button{
+.merchantPanel button{
   font-size: 30px;
   width: fit-content;
   margin: 55px 0;

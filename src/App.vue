@@ -20,7 +20,7 @@ export default {
   data() {
     return {
         //  baseURL : "https://limitless-lake-55070.herokuapp.com/",
-      //  baseURL : "http://localhost:8082/",
+       baseURL : "http://localhost:8080/",
       products : null,
       categories : null,
       key : 0
@@ -29,17 +29,17 @@ export default {
   
   components : {Footer, Navbar},
   methods : {
-    async fetchData() {
-      // fetch products
-      await axios.get(this.baseURL + "product/")
-      .then(res => this.products = res.data)
-      .catch(err => console.log(err))
+    // async fetchData() {
+    //   // fetch products
+    //   await axios.get(this.baseURL + "product/")
+    //   .then(res => this.products = res.data)
+    //   .catch(err => console.log(err))
 
-      //fetch categories
-      await axios.get(this.baseURL + "category/")
-      .then(res => this.categories = res.data)
-      .catch(err => console.log(err))
-    },
+    //   //fetch categories
+    //   await axios.get(this.baseURL + "category/")
+    //   .then(res => this.categories = res.data)
+    //   .catch(err => console.log(err))
+    // },
     refreshNav() {
       this.key += 1;
     }

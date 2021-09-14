@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12 text-center">
         <h4 class="pt-3">Our Products</h4>
-        <router-link id="add-product" :to="{name : 'AddProduct'}" v-show="$route.name=='AdminProduct'">
+        <router-link id="add-product" :to="{name : 'AddProduct'}" v-show="$route.name=='MerchantProduct'">
           <button class="btn">Add a new Product</button>
         </router-link>
       </div>
@@ -25,7 +25,7 @@ export default {
   components : {ProductBox},
   props : [ "baseURL" , "products" ],
   mounted(){
-    if (this.$route.name=='AdminProduct' && !localStorage.getItem('token')) {
+    if (this.$route.name=='MerchantProduct' && !localStorage.getItem('token')) {
       this.$router.push({name : 'Signin'});
     }
   }

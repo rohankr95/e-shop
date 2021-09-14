@@ -65,25 +65,25 @@ export default {
       category : {},
       id : null,
       token: null,
-      isAddedToWishlist: false,
-      wishlistString:"Add to wishlist",
+      // isAddedToWishlist: false,
+      // wishlistString:"Add to wishlist",
       quantity: 1
     }
   },
   props : ["baseURL","products", "categories"],
   methods:{
-    addToWishList(productId){
-            axios.post(`${this.baseURL}wishlist/add?token=${this.token}`, {
-                id:productId
-            }).then((response) => {
-                if(response.status==201) {
-                    this.isAddedToWishlist = true;
-                    this.wishlistString = "Added to WishList"
-                }
-            },(error) =>{
-                console.log(error)
-            });
-        },
+    // addToWishList(productId){
+    //         axios.post(`${this.baseURL}wishlist/add?token=${this.token}`, {
+    //             id:productId
+    //         }).then((response) => {
+    //             if(response.status==201) {
+    //                 this.isAddedToWishlist = true;
+    //                 this.wishlistString = "Added to WishList"
+    //             }
+    //         },(error) =>{
+    //             console.log(error)
+    //         });
+    //     },
     addToCart(productId){
       axios.post(`${this.baseURL}cart/add?token=${this.token}`,{
           productId : productId,
