@@ -5,28 +5,28 @@
         <h4 class="pt-3">Cart</h4>
       </div>
     </div>
-
-    <div v-if= "carts" v-for="itr in len" :key="itr" class="row mt-2 pt-3 justify-content-around">
+<div v-if="carts">
+    <div v-for="itr in len" :key="itr" class="row mt-2 pt-3 justify-content-around">
       <div class="col-2"></div>
       <div class="col-md-3 embed-responsive embed-responsive-16by9">
-        <img v-bind:src="cartItem[itr-1].imgUrl" class="w-100 card-img-top embed-responsive-item">
+        <img v-bind:src="cartItem[itr-1].productImage" class="w-100 card-img-top embed-responsive-item">
       </div>
       <div class="col-md-5 px-3">
         <div class="card-block px-3">
-          <h6 class="card-title" @click="showDetails(itr-1)">{{cartItem[itr-1].pName}}</h6>
+          <h6 class="card-title" @click="showDetails(itr-1)">{{cartItem[itr-1].productName}}</h6>
 <!--          <p id="item-description" class="card-text font-italic mb-0">{{cartItem[itr-1].pDescription.substring(0,90)}}...</p>-->
-          <p id="item-price" class="mb-0 font-weight-bold"><sup>$</sup>{{cartItem[itr-1].pPrice}} per unit</p>
+          <p id="item-price" class="mb-0 font-weight-bold"><sup>$</sup>{{cartItem[itr-1].productPrice}} per unit</p>
           <p id="item-quantity" class="mb-0">
             Quantity :
-            <input size="1" class="p-0 h-25 border-bottom border-top-0 border-left-0 border-right-0" v-model="cartItem[itr-1].pQuantity" @change="updateItem(cartItem[itr-1].id,cartItem[itr-1].pQuantity)"/></p>
-          <p id="item-total-price" class="mb-0">Total Price : <sup>$</sup><span class="font-weight-bold">{{cartItem[itr-1].pPrice*cartItem[itr-1].pQuantity}}</span></p>
-          <br><a href="#" class="text-right" @click="deleteItem(cartItem[itr-1].id)">Remove From Cart</a>
+            <input size="1" class="p-0 h-25 border-bottom border-top-0 border-left-0 border-right-0" v-model="cartItem[itr-1].productQuantity" @change="updateItem(cartItem[itr-1].cartId,cartItem[itr-1].productQuantity)"/></p>
+          <p id="item-total-price" class="mb-0">Total Price : <sup>$</sup><span class="font-weight-bold">{{cartItem[itr-1].productPrice*cartItem[itr-1].productQuantity}}</span></p>
+          <br><a href="#" class="text-right" @click="deleteItem(cartItem[itr-1].cartId)">Remove From Cart</a>
         </div>
       </div>
       <div class="col-2"></div>
       <div class="col-12"><hr></div>
     </div>
-
+</div>
     <div class="total-cost pt-2 text-right">
       <h5>Total Cost : $ {{totalcost}}</h5>
       <button :disabled="isDisabled()" class="button_check" @click="checkout()" >Confirm Order</button>
@@ -43,8 +43,7 @@ export default {
 
   data() {
     return {
-      carts: null,
-      token: null,
+      carts: 0,
       len:0,
       totalcost:0,
       cartItem : [],
@@ -65,7 +64,7 @@ export default {
      },
 
      showDetails(itr){
-      this.$router.push({ name: 'ShowDetails', params: { id : this.cartItem[itr].pId } })
+      this.$router.push({ name: 'ShowDetails', params: { id : this.cartItem[itr].productId } })
      },
 
      checkout(){
@@ -73,7 +72,7 @@ export default {
      },
 
      listCartItems(){
-      axios.get(`${this.baseURL}cart/?token=${this.token}`).then((response) => {
+      axios.get("http://10.177.68.12:8085/cart/show/10").then((response) => {
         if(response.status==200){
           this.carts=response.data;
           this.len = Object.keys(this.carts.cartItems).length
@@ -81,13 +80,12 @@ export default {
           let i;
           for(i=0;i<this.len;i++){
             this.cartItem.push({
-              imgUrl:this.carts.cartItems[i].product.imageURL,
-              pName:this.carts.cartItems[i].product.name,
-              pDescription:this.carts.cartItems[i].product.description,
-              pPrice:this.carts.cartItems[i].product.price,
-              pQuantity:this.carts.cartItems[i].quantity ,
-              id:this.carts.cartItems[i].id,
-              pId:this.carts.cartItems[i].product.id,
+              productImage:this.carts.cartItems[i].product.productImage,
+              productName:this.carts.cartItems[i].product.productName,
+              productPrice:this.carts.cartItems[i].product.productPrice,
+              productQuantity:this.carts.cartItems[i].product.productQuantity ,
+              cartId:this.carts.cartItems[i].cartId,
+              productId:this.carts.cartItems[i].product.productId,
               userId:this.carts.cartItems[i].userId
             })
           }

@@ -75,7 +75,7 @@ export default {
       .then(res => {
         //sending the event to parent to handle
         this.$emit("fetchData");
-        this.$router.push({name : 'AdminProduct'});
+        this.$router.push({name : 'MerchantProduct'});
         swal({
           text: "Product Added Successfully!",
           icon: "success",

@@ -4,12 +4,12 @@
         <div class="col-md-1">
         </div>
         <div class="col-md-4 col-12">
-          <img :src="product.imageURL" :alt="product.name" class="img-fluid">
+          <img :src="product.productImage" :alt="product.productName" class="img-fluid">
         </div>
         <div class="col-md-6 col-12 pt-3 pt-md-0">
-          <h4>{{product.name}}</h4>
-          <h6 class="category font-italic">{{category.categoryName}}</h6>
-          <p><span class="font-weight-bold">Description: -</span> <br>{{product.description}}</p>
+          <h4>{{product.productName}}</h4>
+          <h6 class="category font-italic">{{product.productCategory}}</h6>
+          <!-- <p><span class="font-weight-bold">Description: -</span> <br>{{product.description}}</p> -->
 
           <div class="d-flex flex-row justify-content-between">
             <div class="input-group col-md-3 col-4 p-0">
@@ -20,7 +20,7 @@
             </div>
 
             <div class="input-group col-md-3 col-4 p-0">
-              <button type="button" id="add-to-cart-button" class="btn" @click="addToCart(this.id)">
+              <button type="button" id="add-to-cart-button" class="btn" @click="addToCart(this.productId)">
                 Add to Cart
                 <ion-icon name="cart-outline" v-pre></ion-icon>
               </button>
@@ -28,20 +28,17 @@
           </div>
 
           <div class="features pt-3">
-            <h5><strong>Features</strong></h5>
+            <h5><strong>Product Details</strong></h5>
             <ul>
-              <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
-              <li>Officia quas, officiis eius magni error magnam voluptatem</li>
-              <li>nesciunt quod! Earum voluptatibus quaerat dolorem doloribus</li>
-              <li>molestias ipsum ab, ipsa consectetur laboriosam soluta et</li>
-              <li>ut doloremque dolore corrupti, architecto iusto beatae.</li>
+              <li>{{product.productCategory}}</li>
+              <li>{{product.productPrice}}</li>
+              <li>{{product.productName}}</li>
+              <!-- <li>Lorem ipsum dolor sit amet.</li> -->
+              <!-- <li>ut doloremque dolore corrupti, architecto iusto beatae.</li> -->
             </ul>
           </div>
 
-            <!-- <button id="wishlist-button" class="btn mr-3 p-1 py-0" :class="{product_added_wishlist: isAddedToWishlist}" @click="addToWishList(this.id)">
-              {{wishlistString}}
-            </button> -->
-            <button id="show-cart-button" type="button" class="btn mr-3 p-1 py-0" @click="listCartItems()">
+            <button id="show-cart-button" type="button" class="btn mr-3 p-1 py-0" @click="listCartItems">
               Show Cart
               <ion-icon name="cart-outline" v-pre></ion-icon>
             </button>
@@ -65,31 +62,30 @@ export default {
       category : {},
       id : null,
       token: null,
-      // isAddedToWishlist: false,
-      // wishlistString:"Add to wishlist",
       quantity: 1
     }
   },
   props : ["baseURL","products", "categories"],
   methods:{
-    // addToWishList(productId){
-    //         axios.post(`${this.baseURL}wishlist/add?token=${this.token}`, {
-    //             id:productId
-    //         }).then((response) => {
-    //             if(response.status==201) {
-    //                 this.isAddedToWishlist = true;
-    //                 this.wishlistString = "Added to WishList"
-    //             }
-    //         },(error) =>{
-    //             console.log(error)
-    //         });
-    //     },
     addToCart(productId){
-      axios.post(`${this.baseURL}cart/add?token=${this.token}`,{
-          productId : productId,
-          quantity : this.quantity
+      axios.post("http://10.177.68.12:8085/product/cart/", {
+          cart :  {
+          cartId: "10",
+          productId : this.product.productId,
+          quantity : this.product.quantity,
+          productName:this.product.productName,
+          imageUrl:this.product.productImage,
+          price:this.product.productPrice,
+          rating:5,
+          },
+          productId : this.product.productId,
+          quantity : this.product.quantity,
+          productName:this.product.productName,
+          imageUrl:this.product.productImage,
+          price:this.product.productPrice,
+          rating:5,
       }).then((response) => {
-        if(response.status==201){
+        if(response.status==200){
           swal({
             text: "Product Added to the cart!",
             icon: "success",
@@ -102,21 +98,22 @@ export default {
     },
 
     listCartItems(){
-      axios.get(`${this.baseURL}cart/?token=${this.token}`).then((response) => {
+      axios.get("http://10.177.68.12:8085/cart/show/10")
+      .then((response) => {
         if(response.status===200){
           this.$router.push('/cart')
         }
       },(error)=>{
         console.log(error)
       });
-
+      
     }
   },
   mounted() {
     this.id = this.$route.params.id;
-    this.product = this.products.find(product => product.id == this.id);
-    this.category = this.categories.find(category => category.id == this.product.categoryId);
-    this.token = localStorage.getItem('token');
+    this.product = this.products.find(product => product.productId == this.id);
+    // this.category = this.categories.find(category => category.id == this.product.categoryId);
+    // this.token = localStorage.getItem('token');
   }
 }
 </script>

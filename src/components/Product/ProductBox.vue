@@ -1,12 +1,16 @@
 <template>
   <div class="card h-100">
-      <img :src="product.productImage" alt="Avatar" style="width:50% height:400px" >
+       <img :src="product.productImage" alt="Product image" style="width:50% height:400px" >
       <div class="container">
+       
+        <!-- <router-link :to="{ name: 'ShowDetails' }">
+          <button > Show details</button>
+        </router-link> -->
+        <button @click="goToShowDetail"> Show details</button>
         <h4><b>{{product.productName}}</b></h4> 
         <h4><b>{{product.productQuantity}}</b></h4>
         <h4><b>{{product.productPrice}}</b></h4> 
-        <h4><b>{{product.productCategory}}</b></h4> 
-        <p></p> 
+        <h4>{{product.productCategory}}</h4> 
       </div>
 
     <!-- <div class="embed-responsive embed-responsive-16by9">
@@ -35,8 +39,14 @@ export default {
     props : ["product"],
     methods : {
         showDetails(){
-            this.$router.push({ name: 'ShowDetails', params: { id : this.product.id } })
+            this.$router.push({ name: 'ShowDetails', params: { id : this.product.productId } })
+        },
+        goToShowDetail () {
+          this.$router.push('/product/show/' + this.product.productId)
         }
+    },
+    created () {
+      console.log('i am card')
     }
 }
 </script>

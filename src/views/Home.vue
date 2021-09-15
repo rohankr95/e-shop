@@ -10,16 +10,16 @@
   </div>     
   <div id="start-shopping" class="container">
     <div class="row">
-      <div class="col-12 text-left">
+      <!-- <div class="col-12 text-left">
         <h2 class="pt-3">Top Categories</h2>
-      </div>
+      </div> -->
     </div>
     <div class="row">
       <!-- <h1 style="text-align: center; color:red; margin:auto;" v-if="!this.category_size">No Categories Found</h1> -->
-      <div v-for="index in this.category_size" :key="index" class="col-md-6 col-xl-4 col-12 pt-3  justify-content-around d-flex">
+      <!-- <div v-for="index in this.category_size" :key="index" class="col-md-6 col-xl-4 col-12 pt-3  justify-content-around d-flex">
         <CategoryBox :category="categories[index-1]">
         </CategoryBox>
-      </div>
+      </div> -->
     </div>
   </div>
 
@@ -55,14 +55,13 @@ export default {
   emits : ["fetchData", "refreshNav"],
   data(){
     return{
-      category_size:0,
       product_size:0,
       images: [
-       " https://cdn.pixabay.com/photo/2016/11/19/11/33/footwear-1838767_1280.jpg",
-        "https://cdn.pixabay.com/photo/2019/03/12/09/18/tomatoes-4050245_1280.jpg",
-        "https://cdn.pixabay.com/photo/2019/02/09/10/14/tin-can-3984776_1280.jpg",
-        "https://cdn.pixabay.com/photo/2016/04/08/18/46/shopping-mall-1316787_1280.jpg",
-        "https://cdn.pixabay.com/photo/2016/11/19/15/40/clothes-1839935_1280.jpg"
+       " https://cdn.pixabay.com/photo/2017/11/11/07/27/toys-2938508_1280.jpg",
+        "https://cdn.pixabay.com/photo/2019/10/04/10/19/shop-4525235_1280.jpg",
+        "https://cdn.pixabay.com/photo/2015/04/29/15/57/children-745674_1280.png",
+        "https://cdn.pixabay.com/photo/2017/11/10/17/36/child-2936975_1280.jpg",
+        "https://cdn.pixabay.com/photo/2021/05/24/12/54/showcase-6279164_1280.jpg"
       ],
       timer: null,
       currentIndex: 0

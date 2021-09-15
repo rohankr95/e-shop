@@ -28,8 +28,8 @@ export default {
   
   // },
   mounted(){
-    if (this.$route.name=='MerchantProduct' && !localStorage.getItem('token')) {
-      this.$router.push({name : 'Signin'});
+    if (this.$route.name=='Merchant' ) {
+      this.$router.push({name : 'MerchantProduct'});
     }
   }
 }

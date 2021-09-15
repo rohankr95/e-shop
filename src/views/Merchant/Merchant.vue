@@ -8,11 +8,11 @@
 
 <script>
 export default {
-  mounted() {
-    if (!localStorage.getItem('token')) {
-      this.$router.push({name : 'MerchantSignin'});
-    }
-  }
+  // mounted() {
+  //   if (!localStorage.getItem('token')) {
+  //     this.$router.push({name : 'MerchantSignin'});
+  //   }
+  // }
 }
 </script>
 
