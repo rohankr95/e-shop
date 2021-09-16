@@ -8,8 +8,8 @@
         </router-link> -->
         <button @click="goToShowDetail"> Show details</button>
         <h4><b>{{product.productName}}</b></h4> 
-        <h4><b>{{product.productQuantity}}</b></h4>
-        <h4><b>{{product.productPrice}}</b></h4> 
+        <h4><b>Available: {{product.productQuantity}}</b></h4>
+        <h4><b>$ {{product.productPrice}}</b></h4> 
         <h4>{{product.productCategory}}</h4> 
       </div>
 

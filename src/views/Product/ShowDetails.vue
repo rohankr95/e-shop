@@ -16,7 +16,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Quantity</span>
               </div>
-              <input class="form-control" type="number" v-bind:value="quantity"/>
+              <input class="form-control" type="number" v-model="productQuantity"/>
             </div>
 
             <div class="input-group col-md-3 col-4 p-0">
@@ -31,9 +31,9 @@
             <h5><strong>Product Details</strong></h5>
             <ul>
               <li>{{product.productCategory}}</li>
-              <li>{{product.productPrice}}</li>
+              <li>$ {{product.productPrice}}</li>
               <li>{{product.productName}}</li>
-              <!-- <li>Lorem ipsum dolor sit amet.</li> -->
+              <!-- <li>{{product.productRating}}</li> -->
               <!-- <li>ut doloremque dolore corrupti, architecto iusto beatae.</li> -->
             </ul>
           </div>
@@ -62,7 +62,7 @@ export default {
       category : {},
       id : null,
       token: null,
-      quantity: 1
+      productQuantity: 0
     }
   },
   props : ["baseURL","products", "categories"],
@@ -72,14 +72,14 @@ export default {
           cart :  {
           cartId: "10",
           productId : this.product.productId,
-          quantity : this.product.quantity,
+          quantity : this.productQuantity,
           productName:this.product.productName,
           imageUrl:this.product.productImage,
           price:this.product.productPrice,
           rating:5,
           },
           productId : this.product.productId,
-          quantity : this.product.quantity,
+          productQuantity : this.product.produtQuantity,
           productName:this.product.productName,
           imageUrl:this.product.productImage,
           price:this.product.productPrice,
@@ -98,7 +98,7 @@ export default {
     },
 
     listCartItems(){
-      axios.get("http://10.177.68.12:8085/cart/show/10")
+      axios.get("http://10.177.68.12:8085/cart/10")
       .then((response) => {
         if(response.status===200){
           this.$router.push('/cart')
@@ -112,6 +112,7 @@ export default {
   mounted() {
     this.id = this.$route.params.id;
     this.product = this.products.find(product => product.productId == this.id);
+    console.log("i am in show details")
     // this.category = this.categories.find(category => category.id == this.product.categoryId);
     // this.token = localStorage.getItem('token');
   }
